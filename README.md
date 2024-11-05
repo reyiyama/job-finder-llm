@@ -32,7 +32,10 @@ Welcome to **JobFinder**, a sophisticated web application built with Flask, desi
 
 JobFinder is designed to bridge the gap between job seekers and employers by providing an intuitive platform for job discovery and job posting. By integrating machine learning, JobFinder offers category recommendations for new job postings, ensuring that job adverts reach the most relevant candidates.
 
-Whether you're a job seeker looking for your next opportunity or an employer aiming to find the perfect candidate, JobFinder is tailored to meet your needs with ease and efficiency.
+Whether you're a job seeker looking for your next opportunity or an employer aiming to find the perfect candidate, JobFinder is tailored to meet your needs with ease and efficiency. Below is the data flow diagram showing the multiple components of this application.
+
+![FlaskAppStructureFlowchart](https://github.com/user-attachments/assets/207b269c-12bd-434a-a8bf-e6478e747487)
+
 
 ## Features
 
@@ -56,23 +59,24 @@ Whether you're a job seeker looking for your next opportunity or an employer aim
 
 - **Homepage:**
 
-  ![Homepage](screenshots/homepage.png)
+  <img width="478" alt="Screenshot 2024-11-05 at 3 23 13 PM" src="https://github.com/user-attachments/assets/f4916b78-e183-4a11-8f7c-fde08a3ef67b">
+
 
 - **Job Details:**
 
-  ![Job Details](screenshots/job_details.png)
+  <img width="847" alt="Screenshot 2024-11-05 at 3 24 04 PM" src="https://github.com/user-attachments/assets/071c7a63-af01-42c2-ad7c-0812842da98d">
+
 
 - **Browse by Category:**
 
-  ![Browse by Category](screenshots/browse_by_category.png)
+  <img width="847" alt="Screenshot 2024-11-05 at 3 24 04 PM" src="https://github.com/user-attachments/assets/071c7a63-af01-42c2-ad7c-0812842da98d">
 
 - **Post a Job:**
 
-  ![Post a Job](screenshots/post_a_job.png)
+  <img width="465" alt="Screenshot 2024-11-05 at 3 25 13 PM" src="https://github.com/user-attachments/assets/f60c5ffe-e53f-4d22-9032-095a0cf33ddd">
 
-- **Category Recommendation:**
 
-  ![Category Recommendation](screenshots/category_recommendation.png)
+
 
 ## Technology Stack
 
