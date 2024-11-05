@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" media="all" />
+    <style>
+        /* Inline styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f6f6;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #34495e;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 3em auto;
+            padding: 1em;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .flash-messages {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+            border-radius: 5px;
+        }
+
+        label, input, textarea, select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2c3e50;
+        }
+
+        .predicted-category {
+            padding: 10px;
+            background-color: #f7f7f7;
+            border: 1px solid #eaeaea;
+            color: #555;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('browse_jobs') }}">🔍 Browse by Category</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Post a New Job</h1>
+        
+        <!-- Displaying flash messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+            <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('create_job') }}" method="post">
+            <label for="title">Job Title:</label>
+            <input type="text" id="title" name="title" placeholder="e.g., Software Engineer" required>
+
+            <label for="description">Job Description:</label>
+            <textarea id="description" name="description" rows="4" placeholder="Describe the job role, responsibilities, etc." required></textarea>
+            
+            <!-- this javascipt script was written to make the predicted category predict the category as the user is typing, but nonetheless it failed -->
+            <script>
+                function predictCategory() {
+                    const description = document.getElementById("description").value;
+                    fetch(`/predict_category?description=${encodeURIComponent(description)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.querySelector('.predicted-category').textContent = `Predicted Category: ${data.category || 'N/A'}`;
+                    });
+                }
+            </script>
+
+            <!-- User-selected category -->
+            <label for="user_category">Choose a Category (Optional):</label>
+            <select id="user_category" name="user_category">
+            <option value="">--Select a category--</option>
+            {% for category in JOB_CATEGORIES %}
+            <option value="{{ category }}">{{ category }}</option>
+             {% endfor %}
+            </select>
+            
+            <!-- Displaying predicted category which sadly did not work -->
+            <!-- tried to make this portion work with three different models but it still failed to predict category  -->
+            <div class="form-group">
+                <label for="predictedCategory">Predicted Category:</label>
+                <input type="text" class="form-control" id="predictedCategory" value="{{ predicted_category }}" readonly>
+            </div>
+
+            <label for="type">Job Type:</label>
+            <select id="type" name="type" required>
+                <option value="full-time">Full-time</option>
+                <option value="part-time">Part-time</option>
+                <option value="contract">Contract</option>
+                <option value="temporary">Temporary</option>
+                <option value="internship">Internship</option>
+            </select>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="e.g., New York, NY" required>
+
+            <label for="qualifications">Qualifications:</label>
+            <textarea id="qualifications" name="qualifications" rows="3" placeholder="Required qualifications for the job"></textarea>
+
+            <label for="salary">Salary Range:</label>
+            <input type="text" id="salary" name="salary" placeholder="e.g., 50k-70k" required>
+
+            <input type="submit" value="Post Job">
+        </form>
+    </main>
+</body>
+</html>
+
