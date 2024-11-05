@@ -353,6 +353,21 @@ For any inquiries or feedback, please contact:
 - **Email:** amayvishiyer@gmail.com
 - **GitHub:** [reyiyama](https://github.com/reyiyama)
 
----
+## Downloading Model Files
+
+The machine learning models required for this application are available via cloud storage due to file size limitations on GitHub.
+
+**Download Link:**
+
+- [Models Download](https://your-cloud-storage-link)
+
+**Instructions:**
+
+1. Click the link above to download the `models.zip` file.
+2. Extract the `models` directory.
+3. Place the `models` directory in the root of the project.
+
+**Note:** Ensure the `models` directory is at the same level as `app.py`.
+
 
 *Thank you for choosing JobFinder. We hope this application aids you in your job search or helps you find the perfect candidate for your job opening!*
