@@ -359,7 +359,7 @@ The machine learning models required for this application are available via clou
 
 **Download Link:**
 
-- [Models Download]([https://drive.google.com/drive/folders/1YEKuttJ9Qz7q1bBTpFkTz_MDHPrxHsqE?usp=sharing])
+- [Models Download](https://drive.google.com/drive/folders/1YEKuttJ9Qz7q1bBTpFkTz_MDHPrxHsqE?usp=sharing)
 
 **Instructions:**
 
